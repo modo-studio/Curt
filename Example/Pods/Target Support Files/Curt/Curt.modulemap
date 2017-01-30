@@ -1,0 +1,6 @@
+framework module Curt {
+  umbrella header "Curt-umbrella.h"
+
+  export *
+  module * { export * }
+}

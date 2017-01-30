@@ -1,0 +1,16 @@
+PODS:
+  - Curt (0.1.0)
+
+DEPENDENCIES:
+  - Curt (from `../`)
+
+EXTERNAL SOURCES:
+  Curt:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  Curt: 16b86a92296a43cfce54012f66f15362fcc49d0a
+
+PODFILE CHECKSUM: d0f6564c26e1537f0c861463de01bb7981b70101
+
+COCOAPODS: 1.1.1

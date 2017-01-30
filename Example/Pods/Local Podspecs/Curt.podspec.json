@@ -1,0 +1,26 @@
+{
+  "name": "Curt",
+  "version": "0.1.0",
+  "summary": "Curt",
+  "description": "Swift operators to make constraints set up faster to write and easier to read.",
+  "homepage": "https://gitlab.com/caramba/curt",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "caramba": "hello@caramba.io"
+  },
+  "source": {
+    "git": "https://github.com/carambalabs/Curt.git",
+    "tag": "0.1.0"
+  },
+  "social_media_url": "https://twitter.com/carambalabs",
+  "platforms": {
+    "ios": "8.0",
+    "osx": "10.10",
+    "tvos": "9.0",
+    "watchos": "2.0"
+  },
+  "source_files": "Curt/**/*"
+}
