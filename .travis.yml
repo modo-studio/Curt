@@ -5,6 +5,7 @@ notifications:
 before_install:
 - gem install bundler
 - bundle install
+- bundle exec pod repo update --silent
 script:
 - bundle exec fastlane travis
 after_success:
