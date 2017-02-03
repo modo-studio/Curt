@@ -1,0 +1,12 @@
+lane :pods do
+  cocoapods(podfile: "Example/")
+end
+
+lane :tests do
+  scan(workspace: "Example/Curt.xcworkspace", scheme: "Curt", clean: true)
+end
+
+lane :travis do
+  pods
+  tests
+end
