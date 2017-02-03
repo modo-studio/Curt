@@ -17,6 +17,9 @@ class CurtTests: QuickSpec {
 
         var cA: NSLayoutConstraint!
         var cB: NSLayoutConstraint!
+        var constantFloat: CGFloat!
+        var constantInt: CGFloat!
+        var multiplierFloat: CGFloat!
 
         beforeEach {
             view = UIView()
@@ -24,9 +27,12 @@ class CurtTests: QuickSpec {
             viewB = UIView()
             viewC = UIView()
             [viewA, viewB, viewC].forEach { view.addSubview($0) }
+            constantFloat = 12
+            constantInt = 10
+            multiplierFloat = 1.5
         }
 
-        describe("NSLayoutYAxisAnchor ~ NSLayoutYAxisAnchor") {
+        describe("constraint(equalTo anchor: NSLayoutAnchor<AnchorType>)") {
             it("creates valid constraint") {
                 cA = viewA.topAnchor.constraint(equalTo: viewB.topAnchor)
                 cA.isActive = true
@@ -35,20 +41,128 @@ class CurtTests: QuickSpec {
             }
         }
 
-        describe("NSLayoutXAxisAnchor ~ NSLayoutXAxisAnchor") {
+        describe("constraint(greaterThanOrEqualTo anchor: NSLayoutAnchor<AnchorType>)") {
             it("creates valid constraint") {
-                cA = viewA.leadingAnchor.constraint(equalTo: viewB.leadingAnchor)
+                cA = viewA.topAnchor.constraint(greaterThanOrEqualTo: viewB.topAnchor)
                 cA.isActive = true
-                cB = viewA.leadingAnchor ~ viewB.leadingAnchor
+                cB = viewA.topAnchor >~ viewB.topAnchor
                 expect(cA) == cB
             }
         }
 
-        describe("NSLayoutDimension ~ NSLayoutDimension") {
+        describe("constraint(lessThanOrEqualTo anchor: NSLayoutAnchor<AnchorType>)") {
             it("creates valid constraint") {
-                cA = viewA.widthAnchor.constraint(equalTo: viewB.widthAnchor)
+                cA = viewA.topAnchor.constraint(lessThanOrEqualTo: viewB.topAnchor)
                 cA.isActive = true
-                cB = viewA.widthAnchor ~ viewB.widthAnchor
+                cB = viewA.topAnchor <~ viewB.topAnchor
+                expect(cA) == cB
+            }
+        }
+
+        describe("constraint(equalTo anchor: NSLayoutAnchor<AnchorType>, constant c: CGFloat)") {
+            it("creates valid constraint") {
+                cA = viewA.topAnchor.constraint(equalTo: viewB.topAnchor, constant: constantFloat)
+                cA.isActive = true
+                cB = viewA.topAnchor ~ viewB.topAnchor + constantFloat
+                expect(cA) == cB
+            }
+        }
+
+        describe("constraint(greaterThanOrEqualTo anchor: NSLayoutAnchor<AnchorType>, constant c: CGFloat)") {
+            it("creates valid constraint") {
+                cA = viewA.topAnchor.constraint(greaterThanOrEqualTo: viewB.topAnchor, constant: constantFloat)
+                cA.isActive = true
+                cB = viewA.topAnchor >~ viewB.topAnchor + constantFloat
+                expect(cA) == cB
+            }
+        }
+
+        describe("constraint(lessThanOrEqualTo anchor: NSLayoutAnchor<AnchorType>, constant c: CGFloat)") {
+            it("creates valid constraint") {
+                cA = viewA.topAnchor.constraint(lessThanOrEqualTo: viewB.topAnchor, constant: constantFloat)
+                cA.isActive = true
+                cB = viewA.topAnchor <~ viewB.topAnchor + constantFloat
+                expect(cA) == cB
+            }
+        }
+
+        describe("constraint(equalToConstant c: CGFloat)") {
+            it("creates valid constraint") {
+                cA = viewA.widthAnchor.constraint(equalToConstant: constantFloat)
+                cA.isActive = true
+                cB = viewA.widthAnchor ~ constantFloat
+                expect(cA) == cB
+            }
+        }
+
+        describe("constraint(greaterThanOrEqualToConstant c: CGFloat)") {
+            it("creates valid constraint") {
+                cA = viewA.widthAnchor.constraint(greaterThanOrEqualToConstant: constantFloat)
+                cA.isActive = true
+                cB = viewA.widthAnchor >~ constantFloat
+                expect(cA) == cB
+            }
+        }
+
+        describe("constraint(lessThanOrEqualToConstant c: CGFloat)") {
+            it("creates valid constraint") {
+                cA = viewA.widthAnchor.constraint(lessThanOrEqualToConstant: constantFloat)
+                cA.isActive = true
+                cB = viewA.widthAnchor <~ constantFloat
+                expect(cA) == cB
+            }
+        }
+
+        describe("constraint(equalTo anchor: NSLayoutDimension, multiplier m: CGFloat)") {
+            it("creates valid constraint") {
+                cA = viewA.widthAnchor.constraint(equalTo: viewB.widthAnchor, multiplier: multiplierFloat)
+                cA.isActive = true
+                cB = viewA.widthAnchor ~ viewB.widthAnchor * multiplierFloat
+                expect(cA) == cB
+            }
+        }
+
+        describe("constraint(greaterThanOrEqualTo anchor: NSLayoutDimension, multiplier m: CGFloat)") {
+            it("creates valid constraint") {
+                cA = viewA.widthAnchor.constraint(greaterThanOrEqualTo: viewB.widthAnchor, multiplier: multiplierFloat)
+                cA.isActive = true
+                cB = viewA.widthAnchor >~ viewB.widthAnchor * multiplierFloat
+                expect(cA) == cB
+            }
+        }
+
+        describe("constraint(lessThanOrEqualTo anchor: NSLayoutDimension, multiplier m: CGFloat)") {
+            it("creates valid constraint") {
+                cA = viewA.widthAnchor.constraint(lessThanOrEqualTo: viewB.widthAnchor, multiplier: multiplierFloat)
+                cA.isActive = true
+                cB = viewA.widthAnchor <~ viewB.widthAnchor * multiplierFloat
+                expect(cA) == cB
+            }
+        }
+
+        describe("constraint(equalTo anchor: NSLayoutDimension, multiplier m: CGFloat, constant c: CGFloat)") {
+            it("creates valid constraint") {
+                cA = viewA.widthAnchor.constraint(equalTo: viewB.widthAnchor, multiplier: multiplierFloat, constant: constantFloat)
+                cA.isActive = true
+                cB = viewA.widthAnchor ~ viewB.widthAnchor * multiplierFloat + constantFloat
+                expect(cA) == cB
+            }
+        }
+
+        describe("constraint(greaterThanOrEqualTo anchor: NSLayoutDimension, multiplier m: CGFloat, constant c: CGFloat)") {
+            it("creates valid constraint") {
+                cA = viewA.widthAnchor.constraint(greaterThanOrEqualTo: viewB.widthAnchor, multiplier: multiplierFloat, constant: constantFloat)
+                cA.isActive = true
+                cB = viewA.widthAnchor >~ viewB.widthAnchor * multiplierFloat + constantFloat
+                expect(cA) == cB
+            }
+        }
+         
+        describe("constraint(lessThanOrEqualTo anchor: NSLayoutDimension, multiplier m: CGFloat, constant c: CGFloat)") {
+            it("creates valid constraint") {
+                cA = viewA.widthAnchor.constraint(lessThanOrEqualTo: viewB.widthAnchor, multiplier: multiplierFloat, constant: constantFloat)
+                cA.isActive = true
+                cB = viewA.widthAnchor <~ viewB.widthAnchor * multiplierFloat + constantFloat
                 expect(cA) == cB
             }
         }

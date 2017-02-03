@@ -1,41 +1,74 @@
 import UIKit
 
-precedencegroup Constant {
-    higherThan: AssignmentPrecedence, AdditionPrecedence
+precedencegroup ConstantPrecedence {
+    higherThan: AssignmentPrecedence, AdditionPrecedence, MultiplicationPrecedence
 }
-precedencegroup Constraint {
-    higherThan: AssignmentPrecedence, Constant
+precedencegroup ConstraintPrecedence {
+    higherThan: AssignmentPrecedence, ConstantPrecedence
 }
 
-infix operator ~ : Constraint
-infix operator <= : Constraint
-infix operator >= : Constraint
-infix operator + : Constant
-infix operator - : Constant
+infix operator ~ : ConstraintPrecedence
+infix operator <~ : ConstraintPrecedence
+infix operator >~ : ConstraintPrecedence
+infix operator + : ConstantPrecedence
+infix operator - : ConstantPrecedence
+infix operator * : ConstantPrecedence
 
-public func ~ (left: NSLayoutYAxisAnchor, right: NSLayoutYAxisAnchor) -> NSLayoutConstraint {
-    let constraint = left.constraint(equalTo: right)
+public func ~ <T>(lhs: NSLayoutAnchor<T>, rhs: NSLayoutAnchor<T>) -> NSLayoutConstraint {
+    let constraint = lhs.constraint(equalTo: rhs)
     constraint.isActive = true
     return constraint
 }
 
-public func ~ (left: NSLayoutXAxisAnchor, right: NSLayoutXAxisAnchor) -> NSLayoutConstraint {
-    let constraint = left.constraint(equalTo: right)
+public func >~ <T>(lhs: NSLayoutAnchor<T>, rhs: NSLayoutAnchor<T>) -> NSLayoutConstraint {
+    let constraint = lhs.constraint(greaterThanOrEqualTo: rhs)
     constraint.isActive = true
     return constraint
 }
 
-public func ~ (left: NSLayoutDimension, right: NSLayoutDimension) -> NSLayoutConstraint {
-    let constraint = left.constraint(equalTo: right)
+public func <~ <T>(lhs: NSLayoutAnchor<T>, rhs: NSLayoutAnchor<T>) -> NSLayoutConstraint {
+    let constraint = lhs.constraint(lessThanOrEqualTo: rhs)
     constraint.isActive = true
     return constraint
 }
 
-public func ~ (left: NSLayoutDimension, right: CGFloat) -> NSLayoutConstraint {
-    let constraint = left.constraint(equalToConstant: right)
+public func + (lhs: NSLayoutConstraint, rhs: CGFloat) -> NSLayoutConstraint {
+    lhs.constant = rhs
+    return lhs
+}
+
+public func ~ (lhs: NSLayoutDimension, rhs: CGFloat) -> NSLayoutConstraint {
+    let constraint = lhs.constraint(equalToConstant: rhs)
     constraint.isActive = true
     return constraint
 }
+
+public func >~ (lhs: NSLayoutDimension, rhs: CGFloat) -> NSLayoutConstraint {
+    let constraint = lhs.constraint(greaterThanOrEqualToConstant: rhs)
+    constraint.isActive = true
+    return constraint
+}
+
+public func <~ (lhs: NSLayoutDimension, rhs: CGFloat) -> NSLayoutConstraint {
+    let constraint = lhs.constraint(lessThanOrEqualToConstant: rhs)
+    constraint.isActive = true
+    return constraint
+}
+
+public func * (lhs: NSLayoutConstraint, rhs: CGFloat) -> NSLayoutConstraint {
+    let c = NSLayoutConstraint(item: lhs.firstItem,
+                               attribute: lhs.firstAttribute,
+                               relatedBy: lhs.relation,
+                               toItem: lhs.secondItem,
+                               attribute: lhs.secondAttribute,
+                               multiplier: rhs,
+                               constant: lhs.constant)
+    c.isActive = lhs.isActive
+    return c
+}
+
+
+//----------------------------------------------------------------------------------------------
 
 public func ~ (left: NSLayoutDimension, right: Int) -> NSLayoutConstraint {
     let constraint = left.constraint(equalToConstant: CGFloat(right))
@@ -43,34 +76,6 @@ public func ~ (left: NSLayoutDimension, right: Int) -> NSLayoutConstraint {
     return constraint
 }
 
-public func <= (left: NSLayoutYAxisAnchor, right: NSLayoutYAxisAnchor) -> NSLayoutConstraint {
-    let constraint = left.constraint(lessThanOrEqualTo: right)
-    constraint.isActive = true
-    return constraint
-}
-
-public func >= (left: NSLayoutYAxisAnchor, right: NSLayoutYAxisAnchor) -> NSLayoutConstraint {
-    let constraint = left.constraint(greaterThanOrEqualTo: right)
-    constraint.isActive = true
-    return constraint
-}
-
-public func <= (left: NSLayoutXAxisAnchor, right: NSLayoutXAxisAnchor) -> NSLayoutConstraint {
-    let constraint = left.constraint(lessThanOrEqualTo: right)
-    constraint.isActive = true
-    return constraint
-}
-
-public func >= (left: NSLayoutXAxisAnchor, right: NSLayoutXAxisAnchor) -> NSLayoutConstraint {
-    let constraint = left.constraint(greaterThanOrEqualTo: right)
-    constraint.isActive = true
-    return constraint
-}
-
-public func + (left: NSLayoutConstraint, right: CGFloat) -> NSLayoutConstraint {
-    left.constant = right
-    return left
-}
 public func + (left: NSLayoutConstraint, right: Int) -> NSLayoutConstraint {
     left.constant = CGFloat(right)
     return left
