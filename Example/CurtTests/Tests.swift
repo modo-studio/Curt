@@ -15,6 +15,8 @@ class CurtTests: QuickSpec {
         var viewB: UIView!
         var viewC: UIView!
 
+        var cA: NSLayoutConstraint!
+        var cB: NSLayoutConstraint!
 
         beforeEach {
             view = UIView()
@@ -24,23 +26,31 @@ class CurtTests: QuickSpec {
             [viewA, viewB, viewC].forEach { view.addSubview($0) }
         }
 
-        describe("") {
-
-            var constraintSpec: NSLayoutConstraint!
-            var constraintNew: NSLayoutConstraint!
-
-            beforeEach {
-                constraintSpec = viewA.topAnchor.constraint(equalTo: viewB.topAnchor)
-                constraintSpec.isActive = true
-                constraintNew = viewA.topAnchor ~ viewB.topAnchor + 10
+        describe("NSLayoutYAxisAnchor ~ NSLayoutYAxisAnchor") {
+            it("creates valid constraint") {
+                cA = viewA.topAnchor.constraint(equalTo: viewB.topAnchor)
+                cA.isActive = true
+                cB = viewA.topAnchor ~ viewB.topAnchor
+                expect(cA) == cB
             }
+        }
 
-            itBehavesLike("equal-constraints", sharedExampleContext: { () -> (NSDictionary) in
-                var context: [String: AnyObject] = [:]
-                context["constraintA"] = constraintNew as NSLayoutConstraint?
-                context["constraintB"] = constraintSpec as NSLayoutConstraint?
-                return context as (NSDictionary)
-            })
+        describe("NSLayoutXAxisAnchor ~ NSLayoutXAxisAnchor") {
+            it("creates valid constraint") {
+                cA = viewA.leadingAnchor.constraint(equalTo: viewB.leadingAnchor)
+                cA.isActive = true
+                cB = viewA.leadingAnchor ~ viewB.leadingAnchor
+                expect(cA) == cB
+            }
+        }
+
+        describe("NSLayoutDimension ~ NSLayoutDimension") {
+            it("creates valid constraint") {
+                cA = viewA.widthAnchor.constraint(equalTo: viewB.widthAnchor)
+                cA.isActive = true
+                cB = viewA.widthAnchor ~ viewB.widthAnchor
+                expect(cA) == cB
+            }
         }
     }
 }

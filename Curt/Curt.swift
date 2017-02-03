@@ -3,13 +3,13 @@ import UIKit
 precedencegroup Constant {
     higherThan: AssignmentPrecedence, AdditionPrecedence
 }
-precedencegroup Constrain {
+precedencegroup Constraint {
     higherThan: AssignmentPrecedence, Constant
 }
 
-infix operator ~ : Constrain
-infix operator <= : Constrain
-infix operator >= : Constrain
+infix operator ~ : Constraint
+infix operator <= : Constraint
+infix operator >= : Constraint
 infix operator + : Constant
 infix operator - : Constant
 
