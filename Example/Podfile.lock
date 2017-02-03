@@ -1,16 +1,15 @@
 PODS:
-  - Curt (0.1.0)
+  - Nimble (6.0.1)
+  - Quick (1.0.0)
 
 DEPENDENCIES:
-  - Curt (from `../`)
-
-EXTERNAL SOURCES:
-  Curt:
-    :path: "../"
+  - Nimble (~> 6.0.0)
+  - Quick (~> 1.0.0)
 
 SPEC CHECKSUMS:
-  Curt: 16b86a92296a43cfce54012f66f15362fcc49d0a
+  Nimble: 1527fd1bd2b4cf0636251a36bc8ab37e81da8347
+  Quick: 8024e4a47e6cc03a9d5245ef0948264fc6d27cff
 
-PODFILE CHECKSUM: d0f6564c26e1537f0c861463de01bb7981b70101
+PODFILE CHECKSUM: 9f6b26318f6d13f6f930457c7f180e9eceea4537
 
 COCOAPODS: 1.1.1

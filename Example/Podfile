@@ -1,4 +1,5 @@
 use_frameworks!
 target 'Tests' do
-  pod 'Curt', :path => '../'
+  pod 'Quick', '~> 1.0.0'
+  pod 'Nimble', '~> 6.0.0'
 end
