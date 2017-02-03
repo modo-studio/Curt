@@ -18,8 +18,10 @@ class CurtTests: QuickSpec {
         var cA: NSLayoutConstraint!
         var cB: NSLayoutConstraint!
         var constantFloat: CGFloat!
-        var constantInt: CGFloat!
+        var constantNegativeFloat: CGFloat!
+        var constantInt: Int!
         var multiplierFloat: CGFloat!
+        var multiplierInt: Int!
 
         beforeEach {
             view = UIView()
@@ -28,8 +30,10 @@ class CurtTests: QuickSpec {
             viewC = UIView()
             [viewA, viewB, viewC].forEach { view.addSubview($0) }
             constantFloat = 12
-            constantInt = 10
-            multiplierFloat = 1.5
+            constantNegativeFloat = -constantFloat
+            constantInt = Int(constantFloat)
+            multiplierFloat = 2.0
+            multiplierInt = Int(multiplierFloat)
         }
 
         describe("constraint(equalTo anchor: NSLayoutAnchor<AnchorType>)") {
@@ -68,6 +72,33 @@ class CurtTests: QuickSpec {
             }
         }
 
+        describe("constraint(equalTo anchor: NSLayoutAnchor<AnchorType>, constant c: CGFloat) (Negative Constant)") {
+            it("creates valid constraint") {
+                cA = viewA.topAnchor.constraint(equalTo: viewB.topAnchor, constant: constantNegativeFloat)
+                cA.isActive = true
+                cB = viewA.topAnchor ~ viewB.topAnchor - constantFloat
+                expect(cA) == cB
+            }
+        }
+
+        describe("constraint(equalTo anchor: NSLayoutAnchor<AnchorType>, constant c: CGFloat) (Int)") {
+            it("creates valid constraint") {
+                cA = viewA.topAnchor.constraint(equalTo: viewB.topAnchor, constant: constantFloat)
+                cA.isActive = true
+                cB = viewA.topAnchor ~ viewB.topAnchor + constantInt
+                expect(cA) == cB
+            }
+        }
+
+        describe("constraint(equalTo anchor: NSLayoutAnchor<AnchorType>, constant c: CGFloat) (Negative Int)") {
+            it("creates valid constraint") {
+                cA = viewA.topAnchor.constraint(equalTo: viewB.topAnchor, constant: constantNegativeFloat)
+                cA.isActive = true
+                cB = viewA.topAnchor ~ viewB.topAnchor - constantInt
+                expect(cA) == cB
+            }
+        }
+
         describe("constraint(greaterThanOrEqualTo anchor: NSLayoutAnchor<AnchorType>, constant c: CGFloat)") {
             it("creates valid constraint") {
                 cA = viewA.topAnchor.constraint(greaterThanOrEqualTo: viewB.topAnchor, constant: constantFloat)
@@ -95,11 +126,29 @@ class CurtTests: QuickSpec {
             }
         }
 
+        describe("constraint(equalToConstant c: CGFloat) (Int)") {
+            it("creates valid constraint") {
+                cA = viewA.widthAnchor.constraint(equalToConstant: constantFloat)
+                cA.isActive = true
+                cB = viewA.widthAnchor ~ constantInt
+                expect(cA) == cB
+            }
+        }
+
         describe("constraint(greaterThanOrEqualToConstant c: CGFloat)") {
             it("creates valid constraint") {
                 cA = viewA.widthAnchor.constraint(greaterThanOrEqualToConstant: constantFloat)
                 cA.isActive = true
                 cB = viewA.widthAnchor >~ constantFloat
+                expect(cA) == cB
+            }
+        }
+
+        describe("constraint(greaterThanOrEqualToConstant c: CGFloat) (Int)") {
+            it("creates valid constraint") {
+                cA = viewA.widthAnchor.constraint(greaterThanOrEqualToConstant: constantFloat)
+                cA.isActive = true
+                cB = viewA.widthAnchor >~ constantInt
                 expect(cA) == cB
             }
         }
@@ -113,11 +162,29 @@ class CurtTests: QuickSpec {
             }
         }
 
+        describe("constraint(lessThanOrEqualToConstant c: CGFloat) (Int)") {
+            it("creates valid constraint") {
+                cA = viewA.widthAnchor.constraint(lessThanOrEqualToConstant: constantFloat)
+                cA.isActive = true
+                cB = viewA.widthAnchor <~ constantInt
+                expect(cA) == cB
+            }
+        }
+
         describe("constraint(equalTo anchor: NSLayoutDimension, multiplier m: CGFloat)") {
             it("creates valid constraint") {
                 cA = viewA.widthAnchor.constraint(equalTo: viewB.widthAnchor, multiplier: multiplierFloat)
                 cA.isActive = true
                 cB = viewA.widthAnchor ~ viewB.widthAnchor * multiplierFloat
+                expect(cA) == cB
+            }
+        }
+
+        describe("constraint(equalTo anchor: NSLayoutDimension, multiplier m: CGFloat) (Int)") {
+            it("creates valid constraint") {
+                cA = viewA.widthAnchor.constraint(equalTo: viewB.widthAnchor, multiplier: multiplierFloat)
+                cA.isActive = true
+                cB = viewA.widthAnchor ~ viewB.widthAnchor * multiplierInt
                 expect(cA) == cB
             }
         }
@@ -166,5 +233,6 @@ class CurtTests: QuickSpec {
                 expect(cA) == cB
             }
         }
+
     }
 }
