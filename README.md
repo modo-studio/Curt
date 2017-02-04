@@ -14,15 +14,15 @@ Can be defined like:
 viewA.topAnchor ~ viewB.bottomAnchor + 10
 ```
 
-### Installation
+## Installation
 
 To install Curt you have to add the `Curt.swift` file to your project.
 
 Since operator overloading can't be done in a separate module Curt can't be added to you project using solutions like `cocoapods` or `carthage`. (*We are investigating solutions for this*)
 
-### Basic operators
+## Basic operators
 
-#### Operator `~`
+### Operator `~`
 
 You can use it to constrain any kind of NSLayoutAnchor.
 
@@ -37,7 +37,7 @@ This operator can also be used to constrain all X and Y axis anchors at once
 viewA ~ viewB
 ```
 
-#### Operators `<~` `>~`
+### Operators `<~` `>~`
 
 This operators are the same but working as `lessThanOrEqualTo` and `greaterThanOrEqualTo`.
 
@@ -47,7 +47,7 @@ viewA.widthAnchor <~ viewB.widthAnchor
 viewA.heightAnchor >~ 120
 ```
 
-#### Operators `+` `-`
+### Operators `+` `-`
 
 These operators are used to add the constant to any constraint.
 ```Swift
@@ -55,7 +55,7 @@ viewA.topAnchor ~ viewB.bottomAnchor + 20
 viewA.bottomAnchor ~ viewC.bottomAnchor - 20
 ```
 
-#### Operator `*`
+### Operator `*`
 This operator is used to add the multiplier factor to any constraint.
 ```Swift
 viewA.widthAnchor ~ viewA.heightAnchor * 2.0 + 40
