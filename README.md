@@ -29,6 +29,7 @@ You can use it to constrain any kind of NSLayoutAnchor.
 ```Swift
 viewA.topAnchor ~ viewB.topAnchor
 viewA.widthAnchor ~ viewB.widthAnchor
+viewA.centerXAnchor ~ viewB.centerXAnchor
 viewA.heightAnchor ~ 120
 ```
 
