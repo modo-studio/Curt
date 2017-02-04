@@ -66,6 +66,16 @@ viewA.widthAnchor ~ viewA.heightAnchor * 2.0 + 40
 Curt | Native
 ------------ | -------------
 ```swift viewA.topAnchor ~ viewB.topAnchor ``` | ```swift viewA.topAnchor.constraint(equalTo: viewB.topAnchor) ```
+```swift viewA.topAnchor >~ viewB.topAnchor ``` | ```swift viewA.topAnchor.constraint(greaterThanOrEqualTo: viewB.topAnchor) ```
+```swift viewA.topAnchor <~ viewB.topAnchor ``` | ```swift viewA.topAnchor.constraint(lessThanOrEqualTo: viewB.topAnchor) ```
+```swift viewA.topAnchor ~ viewB.topAnchor + constantFloat ``` | ```swift viewA.topAnchor.constraint(equalTo: viewB.topAnchor, constant: constantFloat) ```
+```swift viewA.topAnchor ~ viewB.topAnchor - constantFloat ``` | ```swift viewA.topAnchor.constraint(equalTo: viewB.topAnchor, constant: constantNegativeFloat) ```
+```swift viewA.topAnchor ~ viewB.topAnchor + constantInt ``` | ```swift viewA.topAnchor.constraint(equalTo: viewB.topAnchor, constant: constantFloat) ```
+```swift ``` | ```swift ```
+```swift ``` | ```swift ```
+```swift ``` | ```swift ```
+```swift ``` | ```swift ```
+```swift ``` | ```swift ```
 
 ## About
 
