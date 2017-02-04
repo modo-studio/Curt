@@ -3,26 +3,60 @@
 [![Build Status](https://travis-ci.org/carambalabs/Curt.svg?branch=master)](https://travis-ci.org/carambalabs/Curt)
 [![codecov](https://codecov.io/gh/carambalabs/Curt/branch/master/graph/badge.svg)](https://codecov.io/gh/carambalabs/Curt)
 
-Curt is a collection of Swift operators to make constraints set up faster to write and easier to read.
+Curt is a collection of Swift operators to make constraints setup faster to write and easier to read.
 
-Aren't you tired of writing all those boring constraints? :expressionless: Writting all the time those long, ugly and very repetitive lines... 99% having to activate all of them manually... having to write 4 different constraints to make a view match parent edges...Don't worry! Curt is here to save you a bunch of time and suffer!
-
-This is an example of how easily you define a constraint using Curt:
-```Swift
-viewA.topAnchor ~ viewB.bottomAnchor + 10
-```
-Which is equivalent to:
+Using Curt, constraints like:
 ```Swift
 viewA.topAnchor.constraint(equalTo: viewB.bottomAnchor, constant: 10).isActive = true
 ```
-or:
+Can be defined like:
 ```Swift
-//todo
+viewA.topAnchor ~ viewB.bottomAnchor + 10
 ```
-Which is equivalent to:
+
+### Installation
+
+To install Curt you have to add the `Curt.swift` file to your project.
+
+Since operator overloading can't be done in a separate module Curt can't be added to you project using solutions like `cocoapods` or `carthage`. (*We are investigating solutions for this*)
+
+### Basic operators
+
+#### Operator `~`
+
+You can use it to constrain any kind of NSLayoutAnchor.
+
 ```Swift
-viewA.topAnchor.constraint(equalTo: viewB.topAnchor).isActive = true
-viewA.leadingAnchor.constraint(equalTo: viewB.leadingAnchor).isActive = true
-viewA.trailingAnchor.constraint(equalTo: viewB.trailingAnchor).isActive = true
-viewA.bottomAnchor.constraint(equalTo: viewB.bottomAnchor).isActive = true
+viewA.topAnchor ~ viewB.topAnchor
+viewA.widthAnchor ~ viewB.widthAnchor
+viewA.heightAnchor ~ 120
+```
+
+This operator can also be used to constrain all X and Y axis anchors at once
+```Swift
+viewA ~ viewB
+```
+
+#### Operators `<~` `>~`
+
+This operators are the same but working as `lessThanOrEqualTo` and `greaterThanOrEqualTo`.
+
+```Swift
+viewA.topAnchor >~ viewB.topAnchor
+viewA.widthAnchor <~ viewB.widthAnchor
+viewA.heightAnchor >~ 120
+```
+
+#### Operators `+` `-`
+
+These operators are used to add the constant to any constraint.
+```Swift
+viewA.topAnchor ~ viewB.bottomAnchor + 20
+viewA.bottomAnchor ~ viewC.bottomAnchor - 20
+```
+
+#### Operator `*`
+This operator is used to add the multiplier factor to any constraint.
+```Swift
+viewA.widthAnchor ~ viewA.heightAnchor * 2.0 + 40
 ```
