@@ -22,7 +22,7 @@ Since operator overloading can't be done in a separate module Curt can't be adde
 
 ## Operators
 
-These are the Curt operators and some examples, check out the [tests](https://github.com/carambalabs/Curt/blob/master/Example/CurtTests/Tests.swift) to see all the cases and examples between Curt and Native API.
+These are the Curt operators and some examples, check out the [tests](https://github.com/carambalabs/Curt/blob/master/Example/CurtTests/Tests.swift) to see all the cases and examples between Curt and Native API. All the operators return **activated** `NSLayoutConstraint`.
 
 
 ### Operator `~`
