@@ -20,7 +20,10 @@ To install Curt you have to add the `Curt.swift` file to your project.
 
 Since operator overloading can't be done in a separate module Curt can't be added to you project using solutions like `cocoapods` or `carthage`. (*We are investigating solutions for this*)
 
-## Basic operators
+## Operators
+
+These are the Curt operators and some examples, check out the [tests](https://github.com/carambalabs/Curt/blob/master/Example/CurtTests/Tests.swift) to see all the cases and examples between Curt and Native API.
+
 
 ### Operator `~`
 
@@ -61,8 +64,6 @@ This operator is used to add the multiplier factor to any constraint.
 ```Swift
 viewA.widthAnchor ~ viewA.heightAnchor * 2.0 + 40
 ```
-
-Check out the [tests](https://github.com/carambalabs/Curt/blob/master/Example/CurtTests/Tests.swift) to see all the equivalences between Curt and Native API.
 
 ## About
 
