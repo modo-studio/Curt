@@ -62,6 +62,11 @@ This operator is used to add the multiplier factor to any constraint.
 viewA.widthAnchor ~ viewA.heightAnchor * 2.0 + 40
 ```
 
+## Table of equivalences
+Curt | Native
+------------ | -------------
+```swift viewA.topAnchor ~ viewB.topAnchor ``` | ```swift viewA.topAnchor.constraint(equalTo: viewB.topAnchor) ```
+
 ## About
 
 <img src="https://github.com/carambalabs/Foundation/blob/master/ASSETS/avatar_rounded.png?raw=true" width="70" />
