@@ -117,23 +117,15 @@ public func * (lhs: NSLayoutConstraint, rhs: Int) -> NSLayoutConstraint {
     return c
 }
 
+// MARK: - Extra operations
 
-//public func ~ (left: NSLayoutDimension, right: Int) -> NSLayoutConstraint {
-//    let constraint = left.constraint(equalToConstant: CGFloat(right))
-//    constraint.isActive = true
-//    return constraint
-//}
-//
-//public func + (left: NSLayoutConstraint, right: Int) -> NSLayoutConstraint {
-//    left.constant = CGFloat(right)
-//    return left
-//}
-//public func - (left: NSLayoutConstraint, right: CGFloat) -> NSLayoutConstraint {
-//    left.constant = -right
-//    return left
-//}
-//public func - (left: NSLayoutConstraint, right: Int) -> NSLayoutConstraint {
-//    left.constant = CGFloat(-right)
-//    return left
-//}
-//
+public func ~ (lhs: UIView, rhs: UIView) -> [NSLayoutConstraint] {
+    let constraints = [
+        lhs.topAnchor.constraint(equalTo: rhs.topAnchor),
+        lhs.leadingAnchor.constraint(equalTo: rhs.leadingAnchor),
+        lhs.trailingAnchor.constraint(equalTo: rhs.trailingAnchor),
+        lhs.bottomAnchor.constraint(equalTo: rhs.bottomAnchor)
+    ]
+    NSLayoutConstraint.activate(constraints)
+    return constraints
+}

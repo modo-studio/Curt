@@ -224,7 +224,7 @@ class CurtTests: QuickSpec {
                 expect(cA) == cB
             }
         }
-         
+
         describe("constraint(lessThanOrEqualTo anchor: NSLayoutDimension, multiplier m: CGFloat, constant c: CGFloat)") {
             it("creates valid constraint") {
                 cA = viewA.widthAnchor.constraint(lessThanOrEqualTo: viewB.widthAnchor, multiplier: multiplierFloat, constant: constantFloat)
@@ -234,5 +234,21 @@ class CurtTests: QuickSpec {
             }
         }
 
+        // MARK: - Extra operations
+
+        describe("constrain to all X, Y anchors") {
+            it("creates valid constraint") {
+                let csA = [viewA.topAnchor.constraint(equalTo: viewB.topAnchor),
+                           viewA.leadingAnchor.constraint(equalTo: viewB.leadingAnchor),
+                           viewA.trailingAnchor.constraint(equalTo: viewB.trailingAnchor),
+                           viewA.bottomAnchor.constraint(equalTo: viewB.bottomAnchor)]
+                NSLayoutConstraint.activate(csA)
+                let csB = viewA ~ viewB
+
+                for (coA, coB) in zip(csA, csB) {
+                    expect(coA) == coB
+                }
+            }
+        }
     }
 }
