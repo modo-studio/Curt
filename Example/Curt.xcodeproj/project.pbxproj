@@ -7,14 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5501BB111E4498D5000CBD7C /* Curt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5501BB101E4498D5000CBD7C /* Curt.swift */; };
 		551C4EE21E3FB6A90044A0C2 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 551C4EE11E3FB6A90044A0C2 /* Helpers.swift */; };
 		55FFDFAA1E3F92CD00D98E9F /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FFDFA91E3F92CD00D98E9F /* Tests.swift */; };
 		5D4607B377EA41136A7ECED9 /* Pods_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5A4A05572482091C0057D5C /* Pods_Tests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		5501BB101E4498D5000CBD7C /* Curt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Curt.swift; sourceTree = "<group>"; };
 		551C4EE11E3FB6A90044A0C2 /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		55FFDFA51E3F92CD00D98E9F /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		55FFDFA91E3F92CD00D98E9F /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
@@ -44,19 +42,9 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		5501BB0F1E4498D5000CBD7C /* Curt */ = {
-			isa = PBXGroup;
-			children = (
-				5501BB101E4498D5000CBD7C /* Curt.swift */,
-			);
-			name = Curt;
-			path = ../Curt;
-			sourceTree = "<group>";
-		};
 		55FFDF881E3F92CC00D98E9F = {
 			isa = PBXGroup;
 			children = (
-				5501BB0F1E4498D5000CBD7C /* Curt */,
 				55FFDFA81E3F92CD00D98E9F /* CurtTests */,
 				55FFDF921E3F92CC00D98E9F /* Products */,
 				E6EA58BB7FEC2A669A54E7AC /* Pods */,
@@ -211,7 +199,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5501BB111E4498D5000CBD7C /* Curt.swift in Sources */,
 				55FFDFAA1E3F92CD00D98E9F /* Tests.swift in Sources */,
 				551C4EE21E3FB6A90044A0C2 /* Helpers.swift in Sources */,
 			);

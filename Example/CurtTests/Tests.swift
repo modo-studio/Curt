@@ -6,6 +6,7 @@
 import XCTest
 import Quick
 import Nimble
+import Curt
 
 class CurtTests: QuickSpec {
     override func spec() {
